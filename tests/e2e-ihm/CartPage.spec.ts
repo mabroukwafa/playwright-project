@@ -1,7 +1,7 @@
 import{ expect, test } from '@playwright/test';
-import{ ProductPage } from '../pages/ProductPage';
-import { CartPage } from '../pages/CartPage';
-import { BASE_URL, CART_URL } from '../utils/envConfig';
+import{ ProductPage } from '../../pages/ProductPage';
+import { CartPage } from '../../pages/CartPage';
+import { BASE_URL, CART_URL } from '../../utils/envConfig';
 
 test.describe("cart page validation", ()=>{
 

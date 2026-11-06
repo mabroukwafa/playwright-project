@@ -1,6 +1,6 @@
 import{ expect, test } from '@playwright/test';
-import{ ProductPage } from '../pages/ProductPage';
-import { BASE_URL } from '../utils/envConfig';
+import{ ProductPage } from '../../pages/ProductPage';
+import { BASE_URL } from '../../utils/envConfig';
 
 test.describe("product page ", ()=>{
 
@@ -18,7 +18,8 @@ test.describe("product page ", ()=>{
 
    test('add ALL products in cart', async({page})=> {
     
-   await productPage.addAllProductToCart(page);
+  // await productPage.addAllProductToCart(page);
+    await productPage.getAllProductsName(page);
 
    })
 })

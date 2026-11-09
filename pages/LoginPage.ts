@@ -1,6 +1,7 @@
 import {Page} from '@playwright/test';
 import {loginPageLocators} from '../locators/LoginPageLocator';
 
+// Provides method for filling in and submitting the login form.
 export class LoginPage {
 
     async fillLoginForm(page: Page, email: string, password: string) {

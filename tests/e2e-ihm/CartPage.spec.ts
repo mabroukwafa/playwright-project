@@ -1,7 +1,7 @@
 import{ expect, test } from '@playwright/test';
-import{ ProductPage } from '../pages/ProductPage';
-import { CartPage } from '../pages/CartPage';
-import { BASE_URL, CART_URL } from '../utils/envConfig';
+import{ ProductPage } from '../../pages/ProductPage';
+import { CartPage } from '../../pages/CartPage';
+import { BASE_URL, CART_URL } from '../../utils/envConfig';
 
 test.describe("cart page validation", ()=>{
 
@@ -9,6 +9,7 @@ test.describe("cart page validation", ()=>{
     let cartPage : CartPage
 
     test.beforeEach(async ({page})=>{
+        // Initialize the page objects and go to the baseUrl
         productPage = new ProductPage(page);
         cartPage = new CartPage(page);
         await page.goto(BASE_URL);
@@ -17,6 +18,7 @@ test.describe("cart page validation", ()=>{
  
 
     test('validate first product in the cart page', async({page})=> {
+    // Add the first catalog product, open the cart, and compare the product names.
     await productPage.addFirstProductToCart(page);
     await productPage.goToCart(page);
     await expect(page).toHaveURL(CART_URL)
@@ -26,6 +28,7 @@ test.describe("cart page validation", ()=>{
     }) 
 
    test('validate one product in the cart page', async({page})=> {
+        // Add the product at the selected index and verify it appears in the cart.
         const nth= 2
         const productToaddName = await productPage.getAddedProductName(page, nth)
         await productPage.addAnyProductToCart(page, nth)
@@ -38,9 +41,11 @@ test.describe("cart page validation", ()=>{
 
     test('validate any product in the cart page', async({page})=> {
 
+        // Capture the names of two catalog products before adding them to the cart.
         const firtsproductToaddName = await productPage.getAddedProductName(page, 1)
         const secondproductToaddName = await productPage.getAddedProductName(page, 0)
 
+        // Add both products, then open the cart to inspect its contents.
         await productPage.addAnyProductToCart(page, 0)
         await productPage.addAnyProductToCart(page, 1)
         

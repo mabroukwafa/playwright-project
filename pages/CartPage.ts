@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { cartPageLocators } from "../locators/CartPageLocator";
 
+// Provides methods for reading product details from the cart page.
 export class CartPage {
 
     constructor(private page: Page) {}
@@ -16,5 +17,4 @@ export class CartPage {
 
 
 }
-
 

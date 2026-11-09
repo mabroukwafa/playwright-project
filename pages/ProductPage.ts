@@ -1,14 +1,12 @@
 import {Page} from '@playwright/test';  
 import { productPageLocators } from '../locators/ProductPageLocators';
 
+// Provides methods for interacting with products and the shopping cart.
 export class ProductPage {
 
     constructor(private page: Page) {}
    
-   /* async addFirstProductToCart() {
-        const firstProductWrapper = this.page.locator(productPageLocators.productWrapper ).first()
-        await firstProductWrapper.getByRole('button', {name: productPageLocators.buttonAddToCartName}).click()
-    }*/
+
     async addFirstProductToCart(page:Page) {
        await page.locator(productPageLocators.locatorAddToCart).first().click();
        
@@ -45,22 +43,12 @@ export class ProductPage {
        
       }
     }
-   
 
-   /* async addAllProductsToCart(): Promise<void> {
-  const products = this.page.locator(productPageLocators.productWrapper);
-  const count = await products.count();
+    async getAllProductsName(page:Page){
+      console.log(await page.locator(productPageLocators.productWrapper).getByRole('heading').allTextContents());
+    }
 
-  for (let i = 0; i < count; i++) {
-    const addButton = products
-      .nth(i)
-      .getByRole('button', {
-        name: productPageLocators.buttonAddToCartName,
-        exact: true,
-      });
 
-    await addButton.click();
-  }
-}*/
+
 
 }

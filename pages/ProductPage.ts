@@ -1,6 +1,7 @@
 import {Page} from '@playwright/test';  
 import { productPageLocators } from '../locators/ProductPageLocators';
 
+// Provides methods for interacting with products and the shopping cart.
 export class ProductPage {
 
     constructor(private page: Page) {}

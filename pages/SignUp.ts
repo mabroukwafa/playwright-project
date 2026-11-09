@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { signUpPageLocators } from "../locators/SignUpPageLocator";
 
+// Provides method for completing and submitting the sign-up form.
 export class SignUpPage {
     
     async fillSignUpForm(page: Page, firstName: string, lastName: string, email: string, password: string) {

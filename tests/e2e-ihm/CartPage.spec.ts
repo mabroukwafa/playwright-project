@@ -10,8 +10,8 @@ test.describe("cart page validation", ()=>{
 
     test.beforeEach(async ({page})=>{
         // Initialize the page objects and go to the baseUrl
-        productPage = new ProductPage(page);
-        cartPage = new CartPage(page);
+        productPage = new ProductPage();
+        cartPage = new CartPage();
         await page.goto(BASE_URL);
         await expect(page).toHaveURL("https://valentinos-magic-beans.click/")
     })

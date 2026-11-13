@@ -4,8 +4,7 @@ import { productPageLocators } from '../locators/ProductPageLocators';
 // Provides methods for interacting with products and the shopping cart.
 export class ProductPage {
 
-    constructor(private page: Page) {}
-   
+    
 
     async addFirstProductToCart(page:Page) {
        await page.locator(productPageLocators.locatorAddToCart).first().click();
@@ -39,7 +38,7 @@ export class ProductPage {
       for(let i=0;i<count;i++)
       {
         await buttons.nth(i).click();
-        console.log(await this.getAddedProductName(this.page, i))
+        console.log(await this.getAddedProductName(page, i))
        
       }
     }

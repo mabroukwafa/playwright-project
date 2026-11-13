@@ -8,7 +8,7 @@ test.describe("product page ", ()=>{
 
     test.beforeEach(async ({page})=>{
         // Initialize the product page object and open the catalog.
-        productPage = new ProductPage(page);
+        productPage = new ProductPage();
         await page.goto(BASE_URL);
         console.log('Navigated to the product page');
         await expect(page).toHaveURL("https://valentinos-magic-beans.click/")
@@ -21,8 +21,7 @@ test.describe("product page ", ()=>{
    test('add ALL products in cart', async({page})=> {
     
   // Retrieve the names of all products displayed in the catalog.
-  // await productPage.addAllProductToCart(page);
+    await productPage.addAllProductToCart(page);
     await productPage.getAllProductsName(page);
-
    })
 })

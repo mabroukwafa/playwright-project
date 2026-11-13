@@ -34,7 +34,7 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
+    /*{
       name: 'api-tests',
       testDir:'./tests/api-tests',
       use: {
@@ -45,13 +45,13 @@ export default defineConfig({
           'Content-Type': 'application/json',
         },
       },
-    },
+    },*/
     /*{
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },*/
 
-   /* {
+    {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },

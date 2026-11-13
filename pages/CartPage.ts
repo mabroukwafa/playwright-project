@@ -4,7 +4,6 @@ import { cartPageLocators } from "../locators/CartPageLocator";
 // Provides methods for reading product details from the cart page.
 export class CartPage {
 
-    constructor(private page: Page) {}
 
     async getFirstProductInCart(page: Page) {
         return await page.locator(cartPageLocators.productWrapper).first().getByRole('heading').textContent();

@@ -44,7 +44,7 @@ export class ProductPage {
     }
 
     async getAllProductsName(page:Page){
-      console.log(await page.locator(productPageLocators.productWrapper).getByRole('heading').allTextContents());
+      return await page.locator(productPageLocators.productWrapper).getByRole('heading').allTextContents();
     }
 
 

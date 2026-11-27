@@ -13,8 +13,8 @@ Feature: Add items from homepage
 
     Scenario: Add a selected product in cart
         Given I navigate to the homepage
-        When I add product number
+        When I add the product NUMBER 2
         And Go to the cart page
         Then I should see the selected product added
-
-  
+            
+    

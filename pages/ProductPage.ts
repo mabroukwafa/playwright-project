@@ -27,7 +27,7 @@ export class ProductPage {
 
     async getAddedProductName(page:Page, nth:number ) {
         const productWrapper = await page.locator(productPageLocators.productWrapper).nth(nth)
-        const addedProductName= await productWrapper.getByRole('heading').first().textContent()
+        const addedProductName= await productWrapper.getByRole('heading').textContent()
         return addedProductName
     }
     

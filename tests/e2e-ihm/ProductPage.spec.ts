@@ -23,5 +23,7 @@ test.describe("product page ", ()=>{
   // Retrieve the names of all products displayed in the catalog.
     await productPage.addAllProductToCart(page);
     await productPage.getAllProductsName(page);
+    
    })
+ 
 })

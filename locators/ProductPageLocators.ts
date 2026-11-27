@@ -5,6 +5,7 @@ export const productPageLocators = {
     firstButtonTestId: '.flex gap-2',
     locatorAddToCart: '[data-test-id^="featured-product-add-to-cart-"]',
     cartbtnAttribute: '[data-test-id="header-cart-button"]',
+    
 }
 
 

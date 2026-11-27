@@ -1,4 +1,4 @@
-import { Given, Then, When, setDefaultTimeout } from "@cucumber/cucumber"
+import { After, Given, Then, When, setDefaultTimeout } from "@cucumber/cucumber"
 import { BASE_URL } from '../../utils/envConfig';
 import { ProductPage } from '../../pages/ProductPage'
 import { CartPage } from '../../pages/CartPage'
@@ -10,8 +10,9 @@ setDefaultTimeout(30_000);
 
 let productPage: ProductPage
 let cartpage: CartPage
-let allproducts: string[]
-let selectedProduct: string
+let allproducts:any
+let firstProduct: any
+let product: any
 
 Given('I navigate to the homepage', async () => {
     await pageFixture.page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 30_000 })
@@ -20,34 +21,28 @@ Given('I navigate to the homepage', async () => {
 When('I click on the first button', async () => {
     productPage = new ProductPage();
     await productPage.addFirstProductToCart(pageFixture.page);
+    firstProduct = await productPage.getFirstProductName(pageFixture.page)
 });
 
-When('I add product number {int}', async (productNumber: number) => {
-    productPage = new ProductPage();
-    const products = await productPage.getAllProductsName(pageFixture.page);
 
-    if (productNumber < 1 || productNumber > products.length) {
-        throw new Error(`Product number must be between 1 and ${products.length}.`);
-    }
+When('I add all products',async()=>{
+    await productPage.addAllProductToCart(pageFixture.page)
+    allproducts = await productPage.getAllProductsName(pageFixture.page)
+});
 
-    selectedProduct = products[productNumber - 1];
-    await productPage.addAnyProductToCart(pageFixture.page, productNumber - 1);
+When('I add the product NUMBER {int}',async(number: number)=>{
+    await productPage.addAnyProductToCart(pageFixture.page,number)
+    product = await productPage.getAddedProductName(pageFixture.page,number+1)
+    console.log(product)
 });
 
 When('Go to the cart page', async()=>{
     await productPage.goToCart(pageFixture.page); 
 })
 
-When('I add all products',async()=>{
-    await productPage.addAllProductToCart(pageFixture.page)
-    allproducts = await productPage.getAllProductsName(pageFixture.page)
-
-})
-
 Then('I should see the first item added', async () => {
     cartpage = new CartPage()
-    await cartpage.getFirstProductInCart(pageFixture.page);
-    expect (await cartpage.getFirstProductInCart(pageFixture.page)).toEqual(await productPage.getFirstProductName(pageFixture.page))
+    expect (await cartpage.getFirstProductInCart(pageFixture.page)).toEqual(firstProduct)
 });
 
 Then('I should see all products added',async()=>{
@@ -55,7 +50,8 @@ Then('I should see all products added',async()=>{
     expect(await cartpage.getAllProductsInCart(pageFixture.page)).toEqual(allproducts)
 })
 
-Then('I should see the selected product added', async () => {
-    cartpage = new CartPage();
-    expect(await cartpage.getAllProductsInCart(pageFixture.page)).toContain(selectedProduct);
-});
+Then('I should see the selected product added',async()=>{
+    cartpage= new CartPage()
+    console.log(await cartpage.getAllProductsInCart(pageFixture.page))
+    expect(await cartpage.getAllProductsInCart(pageFixture.page)).toContain(product)
+})

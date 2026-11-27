@@ -13,6 +13,7 @@ export class CartPage {
         const products = await page.locator(cartPageLocators.productWrapper).getByRole('heading').allTextContents();
         return products;
     }
+    
 
 
 }
